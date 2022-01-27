@@ -620,7 +620,11 @@ static int pmain (lua_State *L) {
 }
 
 
+#ifdef __VSF__
+int lua_main (int argc, char **argv) {
+#else
 int main (int argc, char **argv) {
+#endif
   int status, result;
   lua_State *L = luaL_newstate();  /* create state */
   if (L == NULL) {
