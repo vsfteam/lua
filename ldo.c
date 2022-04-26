@@ -69,6 +69,18 @@
 
 #else							/* }{ */
 
+#ifdef __VSF__
+#include "hal/arch/vsf_arch.h"
+#ifdef VSF_ARCH_SETJMP
+#	undef setjmp
+#	define setjmp			VSF_ARCH_SETJMP
+#endif
+#ifdef VSF_ARCH_LONGJMP
+#	undef longjmp
+#	define longjmp			VSF_ARCH_LONGJMP
+#endif
+#endif
+
 /* ISO C handling with long jumps */
 #define LUAI_THROW(L,c)		longjmp((c)->b, 1)
 #define LUAI_TRY(L,c,a)		if (setjmp((c)->b) == 0) { a }
