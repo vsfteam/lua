@@ -43,6 +43,9 @@
 */
 /* #define LUA_USE_C89 */
 
+#ifdef __VSF__
+#undef _WIN32
+#endif
 
 /*
 ** By default, Lua on Windows use (some) specific Windows features
